@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-navbar color="teal">
+        <ion-title>
+            CIF Comandas
+        </ion-title>
+
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar color="danger" placeholder="Produto" [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+
+
+
+    <div class="scrolling-wrapper">
+        <button class="btn" color="light" (click)="selecionaCategoria(c)" [class.active]="categoriaSelecionada == c.id" *ngFor="let c of categorias">{{c.nome}}</button>
+    </div>
+
+    <!-- <h2 text-center>PRODUTOS MAIS VENDIDOS</h2> -->
+    <br>
+    <ion-list>
+        <ion-item *ngFor="let p of produtos" (click)="add(p)">
+            <ion-avatar item-start>
+                <ion-icon name="cart"></ion-icon>
+            </ion-avatar>
+            <h1>{{p.nome}}</h1>
+            <h4>Categoria: {{p.categoria.nome}}</h4>
+            <h3 *ngIf="p.categoria.nome != 'Pizza' && p.categoria.nome != 'Pizzas'
+      && p.categoria.nome != 'pizza' && p.categoria.nome != 'pizzas'" style="color: maroon">Valor: {{p.valor_venda}}
+            </h3>
+            <h3 *ngIf="p.categoria.nome == 'Pizza' || p.categoria.nome == 'Pizzas'
+      || p.categoria.nome == 'pizza' || p.categoria.nome == 'pizzas'" style="color: maroon">Valor: por tamanho</h3>
+        </ion-item>
+    </ion-list>
+
+    <!-- <ion-list>
+    <ion-item *ngFor="let p of produtos" (click)="add(p)">
+      <ion-avatar item-start>
+        <ion-icon name="cart"></ion-icon>
+      </ion-avatar>
+      <h1>{{p.nome}}</h1>
+      <h4>Categoria: {{p.categoria.nome}}</h4>
+      <h3 *ngIf="p.categoria.nome != 'Pizza' && p.categoria.nome != 'Pizzas'
+      && p.categoria.nome != 'pizza' && p.categoria.nome != 'pizzas'" style="color: maroon">Valor: {{p.valor_venda}}</h3>
+      <h3 *ngIf="p.categoria.nome == 'Pizza' || p.categoria.nome == 'Pizzas'
+      || p.categoria.nome == 'pizza' || p.categoria.nome == 'pizzas'" style="color: maroon">Valor: por tamanho</h3>
+    </ion-item>
+  </ion-list> -->
+</ion-content>
+<ion-footer>
+    <button (click)="verComandas()" ion-button block color="primary">Ver Comandas</button>
+    <button (click)="verMesas()" ion-button block color="secondary">Ver Mesas</button>
+    <button (click)="AddItens()" ion-button block color="danger">Adicionar Itens</button>
+</ion-footer>

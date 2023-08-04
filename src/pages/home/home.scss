@@ -1,0 +1,25 @@
+
+// page-home {
+
+// }
+#icon-right{
+    ion-icon{
+        color: #00e676;
+    }
+}
+
+.btn{
+    width: 280px; 
+    height: 40px;
+}
+
+.active{
+    background: #488aff;
+    color: #fff;
+}
+
+.scrolling-wrapper{
+    display: flex;
+    overflow-x: scroll;
+}
+

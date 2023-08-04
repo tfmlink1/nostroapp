@@ -1,0 +1,34 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Nova Comanda</ion-title>
+
+        <ion-buttons end>
+            <button color="danger" (click)="dismiss()" ion-button icon-only>
+        <ion-icon name="close"></ion-icon>
+      </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <h5 text-center>Informe o código de identificação da comanda</h5>
+
+    <ion-item padding>
+        <ion-label floating color="primary">Comanda</ion-label>
+        <ion-input [(ngModel)]="comanda" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item padding>
+        <ion-label color="primary">MESA</ion-label>
+        <ion-select [(ngModel)]="mesa">
+            <ion-option value="0">AVULSA</ion-option>
+            <ion-option *ngFor="let m of mesas" value="{{m.id}}">{{m.nome}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <button full (click)="postComanda()" ion-button color="secondary">Abrir</button>
+
+</ion-content>

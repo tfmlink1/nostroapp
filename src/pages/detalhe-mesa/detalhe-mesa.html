@@ -1,0 +1,30 @@
+<!--
+  Generated template for the DetalheMesaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Mesa {{mesa.nome}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      Comandas
+    </ion-card-header>
+
+    <ion-list>
+      <button ion-item *ngFor="let p of mesa.pedidosTemp" (click)="itensComanda(p)">
+        <ion-icon name="md-list-box" item-start></ion-icon>
+        {{p.comanda}}
+      </button>
+    </ion-list>
+  </ion-card>
+</ion-content>

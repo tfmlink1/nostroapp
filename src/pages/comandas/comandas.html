@@ -1,0 +1,59 @@
+<!--
+  Generated template for the ComandasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Comandas Abertas</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <ion-searchbar type="number" color="danger" placeholder="Pesquisa Comanda" [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel"
+    (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
+  </ion-searchbar>
+  <button ion-button full color="secondary" icon-only (click)="modalNovaComanda()">
+    <ion-icon name="barcode"></ion-icon>
+    Abrir
+  </button>
+  <div *ngIf="nenhumaComanda == false">
+    <h5 text-center>COMANDAS ABERTAS: <strong>{{comandasAbertas}}</strong></h5>
+    <h5 text-center>VALOR TOTAL: <strong>R$ {{total.toFixed(2).replace('.', ',')}}</strong></h5>
+    <ion-card *ngFor="let c of comandas" (click)="itens(c)">
+      <ion-card-header>
+        <h1 id="cod" text-center>{{c.comanda}}</h1>
+        <ion-label>Total: <strong>R$ {{c.soma.toFixed(2).replace(".", ",")}}</strong></ion-label>
+        <ion-label>Horario Abertura: <strong>{{c.data_registro | date: 'HH:mm' }}</strong></ion-label>
+        <ion-label>Mesa: 
+
+          <strong *ngIf="c.mesa" style="color: red">{{c.mesa.nome}}</strong>
+          <strong *ngIf="!c.mesa" style="color: red">AVULSA</strong>
+        </ion-label>
+      </ion-card-header>
+    </ion-card>
+    <button ion-button full color="secondary" icon-only (click)="modalNovaComanda()">
+      <ion-icon name="barcode"></ion-icon>
+      Abrir
+    </button>
+  </div>
+
+  <div *ngIf="nenhumaComanda == true">
+    <h4 text-center>Nenhuma comanda Aberta</h4>
+
+    <!-- <button ion-button full color="secondary" icon-only (click)="abrir()">
+      <ion-icon name="barcode"></ion-icon>
+      Abrir
+    </button> -->
+  </div>
+
+  <div *ngIf="erro == true">
+    <h4 text-center>Erro de comunicação</h4>
+  </div>
+
+</ion-content>

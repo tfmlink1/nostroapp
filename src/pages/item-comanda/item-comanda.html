@@ -1,0 +1,71 @@
+<!--
+  Generated template for the ItemComandaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Itens</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <lottie-animation-view *ngIf="delete" [options]="lottieConfig" [width]="300" [height]="600">
+  </lottie-animation-view>
+
+  <div *ngIf="!delete">
+
+    <h4 text-center>ITENS DA COMANDA ID <strong id="cod">{{comanda.comanda}}</strong></h4>
+
+    <button color="primary" (click)="adicionarItens()" ion-button full>ADICIONAR ITENS</button>
+    
+    <ion-list>
+
+      <ion-item-sliding #item *ngFor="let i of comanda.itens">
+        <ion-item>
+          <ion-avatar item-start>
+            <ion-icon name="cart"></ion-icon>
+          </ion-avatar>
+          <h2>{{i.produto.nome}}</h2>
+          <p>Qtd: <strong>{{i.quantidade.replace(".", ",")}}</strong></p>
+          <span *ngIf="!i.sabores">Valor Unitário:
+            <strong>{{i.valor.replace(".", ",")}}</strong>
+          </span>
+
+          <div *ngIf="i.sabores.length > 0">
+            <strong>
+              Sabores:
+            </strong>
+            <p style="color: red" *ngFor="let s of i.sabores">{{s.produto.produto.nome}} </p>
+          </div>
+
+          <div *ngIf="i.itens_adicionais.length > 0">
+            <strong>Adicionais:</strong>
+            <p style="color: blue" *ngFor="let a of i.itens_adicionais">{{a.adicional.nome}} R$ {{a.adicional.valor}}
+            </p>
+
+          </div>
+
+          <h2 style="font-size: 22px;"> R$ <strong>{{i.valorItem.toFixed(2)}}</strong></h2>
+
+        </ion-item>
+
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="deleteItem(i)">
+            <ion-icon name="trash"></ion-icon>Delete
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+
+      <h2 text-center>TOTAL: <strong style="color: royalblue">
+          {{comanda.soma.toFixed(2).replace(".", ",")}}</strong></h2>
+
+    <button color="secondary" [disabled]="comanda.itens.length == 0" (click)="fecharMesa()" ion-button full>FECHAR COMANDA</button>
+
+    </ion-list>
+  </div>
+</ion-content>

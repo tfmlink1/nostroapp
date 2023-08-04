@@ -1,0 +1,8 @@
+{
+  "name": "newwnostro",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
